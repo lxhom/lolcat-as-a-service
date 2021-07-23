@@ -9,8 +9,9 @@ An API to lolcat (and figlet, cowsay etc. coming soon!) your text.
 Backstory: A friend and I were talking about how a lot of older stuff is re-sold as an [EaaS](https://simple.wikipedia.org/wiki/Everything_as_a_service) and how ridiculous it is that M$ says that [Windows 365 (basically a Windows PC in M$'s cloud) "enables a variety of new scenarios for the new world of work"](https://www.microsoft.com/en-us/windows-365), even though VM's in the Cloud for personal usage have been around for a while. I jokingly said that we need Lolcat-as-a-service, and then I said, "screw it, I'm making this a thing". And here we are.
   
 > Note for **cURL users**: Use **https://laas.cf instead of https://LaaS.cf** when using cURL because [**Deta**, the provider that hosts this service for free](https://deta.sh) **doesn't recognize uppercase URL's** and cURL sends the domain in uppercase if you type it in uppercase, unlike browsers like Chrome.
-  
-## Lolcat API
+
+# APIs  
+## Lolcat
 ### Query parameters:  ([?][qp])
 Parameter | Required | Type | Effect | Default  
 -|-|-|-|-
