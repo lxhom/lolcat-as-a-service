@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README.md</title>
+    <!--suppress JSUnresolvedLibraryURL -->
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <style>
+        .stackedit__toc > ul > li > ul, .stackedit__toc > ul > li > ul > li > ul {
+            padding-left: 10px;
+        }
+
+        .stackedit__html h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .stackedit__html h1+p {
+            text-align: center;
+        }
+
+        .stackedit__html h1+p+table>thead {
+            display: flex;
+            justify-content: center;
+        }
+
+        .stackedit__html h1+p+table>thead>tr {
+            border-radius: 4px;
+            box-shadow: 0 0 12px #0005;
+        }
+
+        .stackedit__html h1+p+table {
+            width: 100%;
+        }
+
+        table:not(.stackedit__html h1+p+table) {
+            border-radius: 4px;
+            box-shadow: 0 0 12px #0005;
+        }
+    </style>
+</head>
+
+<body class="stackedit">
+<div class="stackedit__left">
+    <div class="stackedit__toc">
+        
+<ul>
+<li><a href="#lolcat-as-a-service-laas">Lolcat-as-a-Service (LaaS)</a>
+<ul>
+<li><a href="#lolcat-api">Lolcat API</a>
+<ul>
+<li><a href="#query-parameters--">Query parameters:  (?)</a></li>
+<li><a href="#special-query-param-syntax">Special query param syntax</a></li>
+<li><a href="#endpoint-kbdpostkbd-">Endpoint: POST /</a></li>
+<li><a href="#endpoint-kbdpostgetkbd-lolcat">Endpoint: POST/GET /lolcat</a></li>
+</ul>
+</li>
+<li><a href="#figlet">FIGlet</a>
+<ul>
+<li><a href="#query-parameters-">Query parameters: (?)</a></li>
+<li><a href="#special-query-param-syntax---not-yet-implemented">Special query param syntax  /!\ NOT YET IMPLEMENTED</a></li>
+<li><a href="#fonts">Fonts</a></li>
+<li><a href="#endpoint-kbdpostgetkbd-figlet---not-yet-implemented">Endpoint: POST/GET /figlet  /!\ NOT YET IMPLEMENTED</a></li>
+</ul>
+</li>
+<li><a href="#faq">FAQ</a>
+<ul>
+<li><a href="#what-are-query-parameters">What are Query parameters?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</div>
+<div class="stackedit__right">
+    <div class="stackedit__html">
+        <!-- Don't edit this file directly, use stackedit.io and publish it with the configuration in docs/template.handlebars -->
+<h1 id="lolcat-as-a-service-laas">Lolcat-as-a-Service (LaaS)</h1>
+<p>An API to lolcat (and figlet, cowsay etc. coming soon!) your text.</p>
+
+<table>
+<thead>
+<tr>
+<th><a href="https://github.com/lxhom/lolcat-as-a-service">Source code</a></th>
+<th><a href="https://deta.sh">Hoster</a></th>
+<th><a href="https://laas.cf/lolcat?html=true&amp;freq=0.1&amp;text=%20____________________________________________%20%0A/%20%20_%20%20%20%20%20%20%20%20%20%20_%20%20%20%20%20%20%20%20%20%20%20_%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5C%0A%7C%20%7C%20%7C%20%20%20%20___%20%7C%20%7C%20___%20__%20_%7C%20%7C_%20%20%20%20__%20_%20___%20%20%20%20%7C%0A%7C%20%7C%20%7C%20%20%20/%20_%20%5C%7C%20%7C/%20__/%20_%60%20%7C%20__%7C%20%20/%20_%60%20/%20__%7C%20%20%20%7C%0A%7C%20%7C%20%7C__%7C%20%28_%29%20%7C%20%7C%20%28_%7C%20%28_%7C%20%7C%20%7C_%20%20%7C%20%28_%7C%20%5C__%20%5C%20%20%20%7C%0A%7C%20%7C_____%5C___/%7C_%7C%5C___%5C__%2C_%7C%5C__%7C%20%20%5C__%2C_%7C___/%20%20%20%7C%0A%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20%20%20%20%20%20%20%20%20%20____%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20%20%20__%20_%20%20/%20___%7C%20%20___%20_%20____%20%20%20_%28_%29%20___%20___%20%20%7C%0A%7C%20%20/%20_%60%20%7C%20%5C___%20%5C%20/%20_%20%5C%20%27__%5C%20%5C%20/%20/%20%7C/%20__/%20_%20%5C%20%7C%0A%7C%20%7C%20%28_%7C%20%7C%20%20___%29%20%7C%20%20__/%20%7C%20%20%20%5C%20V%20/%7C%20%7C%20%28_%7C%20%20__/%20%7C%0A%7C%20%20%5C__%2C_%7C%20%7C____/%20%5C___%7C_%7C%20%20%20%20%5C_/%20%7C_%7C%5C___%5C___%7C%20%7C%0A%5C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20/%0A%20--------------------------------------------%20%0A%20%20%20%20%20%20%20%20%5C%20%20%20%5E__%5E%0A%20%20%20%20%20%20%20%20%20%5C%20%20%28oo%29%5C_______%0A%20%20%20%20%20%20%20%20%20%20%20%20%28__%29%5C%20%20%20%20%20%20%20%29%5C/%5C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%7C----w%20%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%7C%20%20%20%20%20%7C%7C%0A">Example request</a></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table><p>Backstory: A friend and I were talking about how a lot of older stuff is re-sold as an <a href="https://simple.wikipedia.org/wiki/Everything_as_a_service">EaaS</a> and how ridiculous it is that M$ says that <a href="https://www.microsoft.com/en-us/windows-365">Windows 365 (basically a Windows PC in M$'s cloud) "enables a variety of new scenarios for the new world of work"</a>, even though VM's in the Cloud for personal usage have been around for a while. I jokingly said that we need Lolcat-as-a-service, and then I said, "screw it, I'm making this a thing". And here we are.</p>
+<blockquote>
+<p>Note for <strong>cURL users</strong>: Use <strong><a href="https://laas.cf">https://laas.cf</a> instead of <a href="https://LaaS.cf">https://LaaS.cf</a></strong> when using cURL because <a href="https://deta.sh"><strong>Deta</strong>, the provider that hosts this service for free</a> <strong>doesn't recognize uppercase URL's</strong> and cURL sends the domain in uppercase if you type it in uppercase, unlike browsers like Chrome.</p>
+</blockquote>
+<h2 id="lolcat-api">Lolcat API</h2>
+<h3 id="query-parameters--">Query parameters:  (<a href="#what-are-query-parameters">?</a>)</h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Effect</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spread</td>
+<td>No</td>
+<td>float</td>
+<td>Inclination of the rainbow stripes (character widths per line height. High values (&gt;1000) give almost horizontal stripes, low values (0.1) almost vertical ones)</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>freq</td>
+<td>No</td>
+<td>float</td>
+<td>Frequency of the rainbow (low values around  0.0001 give almost monochrome screens)</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>html</td>
+<td>No</td>
+<td>boolean</td>
+<td>Use HTML tags instead of ANSI escape codes</td>
+<td>false</td>
+</tr>
+<tr>
+<td>text</td>
+<td><kbd>GET</kbd> only</td>
+<td>string</td>
+<td>Text to lolcat</td>
+<td><kbd>POST</kbd> body</td>
+</tr>
+</tbody>
+</table><h3 id="special-query-param-syntax">Special query param syntax</h3>
+<p>You can request <kbd>GET</kbd> <code>/lolcat?[text]</code> with <em><strong>no other query params</strong></em> to emulate a <kbd>POST</kbd> request with the body set to <code>[text]</code>.</p>
+<h3 id="endpoint-kbdpostkbd-">Endpoint: <kbd>POST</kbd> <code>/</code></h3>
+<p>Alias for <code>/lolcat</code>. Use this endpoint with a text post body to lolcat the text. Example:</p>
+<pre class=" language-shell"><code class="prism  language-shell">curl -d "$(fortune)" https://laas.cf  
+</code></pre>
+<h3 id="endpoint-kbdpostgetkbd-lolcat">Endpoint: <kbd>POST/GET</kbd> <code>/lolcat</code></h3>
+<p>Use this endpoint with a text post body or the <code>text</code> parameter to lolcat the text. Example:</p>
+<pre class=" language-shell"><code class="prism  language-shell">curl -d "$(fortune)" https://laas.cf/lolcat # or  
+curl "https://laas.cf/lolcat/\?text=$(fortune | urlencode)"  
+</code></pre>
+<h2 id="figlet">FIGlet</h2>
+<h3 id="query-parameters-">Query parameters: (<a href="#what-are-query-parameters">?</a>)</h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Effect</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>font</td>
+<td>No</td>
+<td>string</td>
+<td>The FIGlet font to use (see <a href="#fonts">Fonts</a>)</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>horizontalLayout, verticalLayout</td>
+<td>No</td>
+<td>string</td>
+<td>The horizontal / vertical layout to use. Possible values: <ul><li><code>default</code>: Does the kerning the way the font designer intended</li><li><code>full</code>: Uses full letter spacing</li><li><code>fitted</code>: Moves the letters together until they almost touch</li><li><code>controlled smushing</code> &amp; <code>universal smushing</code>: Common FIGlet kerning setups</li></ul></td>
+<td>default</td>
+</tr>
+<tr>
+<td>width</td>
+<td>No</td>
+<td>number</td>
+<td>Limit the width of the output. For example, if you want your output to be a max of 80 characters wide, you would set this option to 80.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>whitespaceBreak</td>
+<td>No</td>
+<td>boolean</td>
+<td>Works in conjunction with <code>width</code>, will attempt to break text up on whitespace when limiting the width.</td>
+<td>false</td>
+</tr>
+</tbody>
+</table><h3 id="special-query-param-syntax---not-yet-implemented">Special query param syntax  /!\ NOT YET IMPLEMENTED</h3>
+<p>You can request <kbd>GET</kbd> <code>/figlet?[text]</code> with <em><strong>no other query params</strong></em> to emulate a <kbd>POST</kbd> request with the body set to <code>[text]</code>.</p>
+<h3 id="fonts">Fonts</h3>
+<p>You can use every font from <a href="http://FIGlet.org">FIGlet.org</a>. You can go to the <a href="http://www.figlet.org/examples.html">Font examples</a> or to the <a href="http://www.figlet.org/fontdb.cgi">Font database</a>.</p>
+<h3 id="endpoint-kbdpostgetkbd-figlet---not-yet-implemented">Endpoint: <kbd>POST/GET</kbd> <code>/figlet</code>  /!\ NOT YET IMPLEMENTED</h3>
+<p>Use this endpoint with a text post body or the <code>text</code> parameter to lolcat the text. Example:</p>
+<pre class=" language-shell"><code class="prism  language-shell">curl -d "$(fortune)" https://laas.cf/figlet # or  
+curl "https://laas.cf/figlet/\?text=$(fortune | urlencode)"  
+</code></pre>
+<h2 id="faq">FAQ</h2>
+<h3 id="what-are-query-parameters">What are Query parameters?</h3>
+<ul>
+<li>Query parameters are how you send key-value pairs in a URL. They are structured like this:<br>
+<code>?key=value</code> or <code>?key=value&amp;second_key=second_value</code>.</li>
+<li>You just append them after the path like this: <code>https://laas.cf/lolcat/?text=Hello</code>.</li>
+<li>You might have to escape <code>?</code> and <code>&amp;</code> when using your command-line like this: <code>?key=value&amp;second_key=second_value</code>.</li>
+<li>You need to encode special characters that aren't <code>@</code>, <code>*</code>, <code>_</code>, <code>+</code>, <code>-</code>, <code>.</code> or <code>/</code>. Most browsers do that automatically, but you need a tool to encode it in the command like <a href="https://linux.die.net/man/1/urlencode"><code>urlencode</code></a>, but you can use a <kbd>POST</kbd> with cURL if you don't want to encode stuff.</li>
+</ul>
+
+    </div>
+</div>
+</body>
+
+</html>
